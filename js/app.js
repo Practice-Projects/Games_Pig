@@ -7,16 +7,23 @@ init();
 // event listener for Roll Dice button
 document.getElementsByClassName("btn-roll")[0].addEventListener("click", function() {
     if (gamePlaying) {
+
         // generate random number between 1 and 6
-        var roll = Math.floor(Math.random() * 6) + 1;
+        var roll_1 = Math.floor(Math.random() * 6) + 1;
+        var roll_2 = Math.floor(Math.random() * 6) + 1;
+
         // make the dice img visible
-        document.getElementById("dice").style.display = 'inline';
+        document.getElementById("dice-1").style.display = 'inline';
+        document.getElementById("dice-2").style.display = 'inline';
+
         // change the dice img to match the roll
-        document.getElementById("dice").src = 'images/dice-' + roll + '.png';
+        document.getElementById("dice-1").src = 'images/dice-' + roll_1 + '.png';
+        document.getElementById("dice-2").src = 'images/dice-' + roll_2 + '.png';
+
         
-        if (roll !== 1) {
+        if (roll_1 !== 1 && roll_2 !== 1) {
             // increment round score
-            roundScore += roll;
+            roundScore += (roll_1 + roll_2);
             // add roll to current score in DOM 
             document.getElementById('current-' + activePlayer).textContent=roundScore;
         } else {
@@ -36,7 +43,7 @@ document.getElementsByClassName('btn-hold')[0].addEventListener('click',function
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
      
         // check if player won game
-        if(scores[activePlayer] >= 10) {
+        if(scores[activePlayer] >= 100) {
             // set player label to Winner!
             document.getElementById('name-' + activePlayer).textContent = 'Winner!';
             // add and remove classes
@@ -97,7 +104,9 @@ function init() {
     document.querySelector('.player-0-panel').classList.add('active');
 
     // hide the dice
-    document.getElementById('dice').style.display = 'none';
+    document.getElementById('dice-1').style.display = 'none';
+    document.getElementById('dice-2').style.display = 'none';
+
 
     // enable buttons
     document.querySelector('.btn-hold').disabled = false;
