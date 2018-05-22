@@ -38,6 +38,7 @@ document.getElementsByClassName("btn-roll")[0].addEventListener("click", functio
             // set previous roll to 0 since rules only care about 2 consecutive sixes
             prevRoll=0;
         }
+
         // if either dice is one, player loses current score
         if (dice_1 !== 1 && dice_2 !== 1) {
             // increment round score
@@ -46,6 +47,7 @@ document.getElementsByClassName("btn-roll")[0].addEventListener("click", functio
             document.getElementById('current-' + activePlayer).textContent=roundScore;
         } else {
             // next player
+            prevRoll=0;
             nextPlayer();      
         }      
     } 
